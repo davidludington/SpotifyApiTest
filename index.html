@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My Spotify Profile</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 20px;
+            }
+
+            h1, h2, h3 {
+                color: #1DB954;
+            }
+
+            #profile {
+                margin-top: 20px;
+            }
+
+            #avatar img {
+                border-radius: 50%;
+                width: 100px;
+                height: 100px;
+            }
+
+            #topArtists {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 15px;
+                margin-top: 20px;
+            }
+
+            .artist-card {
+                text-align: center;
+                padding: 10px;
+                background-color: #f0f0f0;
+                border-radius: 8px;
+            }
+
+            .artist-card img {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+            }
+
+            .artist-name {
+                margin-top: 10px;
+                font-weight: bold;
+            }
+        </style>
+        <script src="src/script.ts" type="module"></script>
+    </head>
+    <body>
+        <h1>Display your Spotify profile data</h1>
+
+        <section id="profile">
+            <h2>Logged in as <span id="displayName"></span></h2>
+            <div id="avatar"></div>
+            <ul>
+                <li>User ID: <span id="id"></span></li>
+                <li>Email: <span id="email"></span></li>
+                <li>Spotify URI: <a id="uri" href="#"></a></li>
+                <li>Link: <a id="url" href="#"></a></li>
+                <li>Profile Image: <span id="imgUrl"></span></li>
+            </ul>
+            <h3>Top Artists</h3>
+            <div id="topArtists"></div>
+            <ul>
+              <h3>Top Tracks</h3>
+              <style>
+                .track-card {
+                    text-align: center;
+                    padding: 10px;
+                    background-color: #f0f0f0;
+                    border-radius: 8px;
+                }
+
+                .track-card img {
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 8px;
+                }
+
+                .track-name {
+                    margin-top: 10px;
+                    font-weight: bold;
+                }
+
+                .track-artist {
+                    color: gray;
+                    font-size: 14px;
+                }
+              </style>
+              <div id="topTracks"></div>
+            </ul>
+        </section>
+    </body>
+</html>
