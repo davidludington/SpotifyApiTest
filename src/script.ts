@@ -3,7 +3,7 @@ const params = new URLSearchParams(window.location.search);
 const code = params.get("code");
 
 if (!code) {
-    redirectToAuthCodeFlow(clientId);
+    await redirectToAuthCodeFlow(clientId);
 } else {
     const accessToken = await getAccessToken(clientId, code);
     const profile = await fetchProfile(accessToken);
@@ -112,6 +112,7 @@ function populateUI(profile: any, topArtists: any, topTracks: any) {
     document.getElementById("url")!.setAttribute("href", profile.href);
     document.getElementById("imgUrl")!.innerText = profile.images[0]?.url ?? '(no profile image)';
 
+    // Correct section for top artists
     const artistsDiv = document.getElementById("topArtists");
     topArtists.items.forEach((artist: any) => {
         const artistCard = document.createElement("div");
@@ -133,14 +134,11 @@ function populateUI(profile: any, topArtists: any, topTracks: any) {
         artistsDiv!.appendChild(artistCard);
     });
 
-    const tracksDiv = document.createElement("div");
-    tracksDiv.id = "topTracks";
-    tracksDiv.style.marginTop = "20px";
-    tracksDiv.style.display = "grid";
-    tracksDiv.style.gridTemplateColumns = "repeat(auto-fit, minmax(150px, 1fr))";
-    tracksDiv.style.gap = "15px";
-
-    document.getElementById("profile")!.appendChild(tracksDiv); // Append the tracks div to the profile section
+    const tracksDiv = document.getElementById("topTracks");
+    tracksDiv!.style.marginTop = "20px";
+    tracksDiv!.style.display = "grid";
+    tracksDiv!.style.gridTemplateColumns = "repeat(auto-fit, minmax(150px, 1fr))";
+    tracksDiv!.style.gap = "15px";
 
     topTracks.items.forEach((track: any) => {
         const trackCard = document.createElement("div");
@@ -166,5 +164,4 @@ function populateUI(profile: any, topArtists: any, topTracks: any) {
         trackCard.appendChild(trackArtist);
         tracksDiv!.appendChild(trackCard);
     });
-
 }
